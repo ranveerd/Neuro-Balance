@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Wellbeing Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <span class="mark">◐</span>
+    <div>
+      <h1>Digital Wellbeing Check</h1>
+      <p class="sub">A quick read on how your online habits and daily routine line up with your mental health.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- FORM -->
+    <section class="panel form-panel">
+      <form id="predict-form" novalidate>
+
+        <fieldset>
+          <legend>About you</legend>
+          <div class="grid-2">
+            <div class="field">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" min="10" max="100" placeholder="20" required>
+              <span class="hint">10–100</span>
+            </div>
+            <div class="field">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" required>
+                <option value="" disabled selected>Choose one</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label for="country">Country</label>
+              <input type="text" id="country" name="country" placeholder="e.g. India" required>
+            </div>
+            <div class="field">
+              <label for="academic_level">Academic level</label>
+              <select id="academic_level" name="academic_level" required>
+                <option value="" disabled selected>Choose one</option>
+                <option>High school</option>
+                <option>Undergraduate</option>
+                <option>Graduate</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Social media habits</legend>
+          <div class="grid-2">
+            <div class="field">
+              <label for="most_used_platform">Most-used platform</label>
+              <select id="most_used_platform" name="most_used_platform" required>
+                <option value="" disabled selected>Choose one</option>
+                <option>Instagram</option>
+                <option>Facebook</option>
+                <option>Linkedin</option>
+                <option>Snapchat</option>
+                <option>Twitter</option>
+                <option>Youtube</option>
+                <option>Tiktok</option>
+                <option>KakaoTalk</option>
+                <option>Whatsapp</option>
+                <option>WeChat</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="purpose_of_use">Main purpose</label>
+              <select id="purpose_of_use" name="purpose_of_use" required>
+                <option value="" disabled selected>Choose one</option>
+                <option>Networking</option>
+                <option>Education</option>
+                <option>Entertainment</option>
+                <option>News</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field">
+              <label for="avg_daily_usage_hours">Avg. daily usage (hrs)</label>
+              <input type="number" step="0.1" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="24" placeholder="3.5" required>
+            </div>
+            <div class="field">
+              <label for="daily_unlocks">Daily phone unlocks</label>
+              <input type="number" id="daily_unlocks" name="daily_unlocks" min="0" placeholder="60" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Daily routine</legend>
+          <div class="grid-3">
+            <div class="field">
+              <label for="study_hours">Study hours</label>
+              <input type="number" step="0.1" id="study_hours" name="study_hours" min="0" max="24" placeholder="4" required>
+            </div>
+            <div class="field">
+              <label for="physical_activity_hours">Physical activity (hrs)</label>
+              <input type="number" step="0.1" id="physical_activity_hours" name="physical_activity_hours" min="0" max="2" placeholder="0.5" required>
+            </div>
+            <div class="field">
+              <label for="sleep_hours_per_night">Sleep per night (hrs)</label>
+              <input type="number" step="0.1" id="sleep_hours_per_night" name="sleep_hours_per_night" min="0" max="24" placeholder="7" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="stress_level">Current stress level</label>
+            <select id="stress_level" name="stress_level" required>
+              <option value="" disabled selected>Choose one</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+              <option>Very High</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <div id="form-error" class="form-error" role="alert" hidden></div>
+
+        <button type="submit" id="submit-btn" class="submit-btn">
+          <span class="btn-label">Get my score</span>
+          <span class="btn-spinner" hidden></span>
+        </button>
+      </form>
+    </section>
+
+    <!-- RESULT -->
+    <aside class="panel result-panel" id="result-panel">
+      <div class="result-empty" id="result-empty">
+        <span class="mark large">◐</span>
+        <p>Fill in the form and submit it to see your estimated mental health score here.</p>
+      </div>
+
+      <div class="result-content" id="result-content" hidden>
+        <p class="result-eyebrow">Your estimated score</p>
+        <div class="score-number" id="score-number">–</div>
+        <p class="score-tier" id="score-tier"></p>
+
+        <div class="gauge">
+          <div class="gauge-track">
+            <div class="gauge-fill" id="gauge-fill"></div>
+          </div>
+          <div class="gauge-labels"><span>0</span><span>10</span></div>
+        </div>
+
+        <p class="result-note">This is a model estimate based on your inputs, not a clinical diagnosis. If you're struggling, please talk to someone you trust or a professional.</p>
+      </div>
+    </aside>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
