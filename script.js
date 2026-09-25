@@ -1,5 +1,5 @@
 // Point this at wherever your FastAPI server is running.
-const API_URL = "https://neuro-balance-o0lo.onrender.com/";
+const API_URL = "https://neuro-balance-o0lo.onrender.com/predict";
 
 const form = document.getElementById("predict-form");
 const submitBtn = document.getElementById("submit-btn");
